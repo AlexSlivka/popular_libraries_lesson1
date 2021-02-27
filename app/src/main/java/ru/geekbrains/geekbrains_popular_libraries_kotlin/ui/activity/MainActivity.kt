@@ -15,24 +15,25 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         vb = ActivityMainBinding.inflate(layoutInflater)
         setContentView(vb?.root)
 
-        val listener = View.OnClickListener {
-            presenter.counterClick(it.id)
-        }
-
-        vb?.btnCounter1?.setOnClickListener(listener)
-        vb?.btnCounter2?.setOnClickListener(listener)
-        vb?.btnCounter3?.setOnClickListener(listener)
+        vb?.btnCounter1?.setOnClickListener { presenter.counterOneClick() }
+        vb?.btnCounter2?.setOnClickListener { presenter.counterTwoClick() }
+        vb?.btnCounter3?.setOnClickListener { presenter.counterThreeClick() }
     }
 
-    override fun setButtonText(index: Int, text: String) {
-        when(index){
-            0 -> vb?.btnCounter1?.text = text
-            1 -> vb?.btnCounter2?.text = text
-            2 -> vb?.btnCounter3?.text = text
-        }
+    override fun setOneButtonText(text: String) {
+        vb?.btnCounter1?.text = text
+    }
+
+    override fun setTwoButtonText(text: String) {
+        vb?.btnCounter2?.text = text
+    }
+
+    override fun setThreeButtonText(text: String) {
+        vb?.btnCounter3?.text = text
     }
 
 }
